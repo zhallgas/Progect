@@ -1,0 +1,56 @@
+package com.company;
+
+import java.util.ArrayList;
+
+import java.util.NoSuchElementException;
+
+public class Heap<T extends Comparable<T>> {
+
+    private ArrayList<T> items;
+
+    public Heap() {
+        items = new ArrayList<T>();
+    }
+
+    private void siftUp() {
+        int k = items.size() - 1;
+        while (k > 0) {
+            int p = (k-1)/2;
+            T item = items.get(k);
+            T parent = items.get(p);
+            if (item.compareTo(parent) > 0) {
+                // swap
+                items.set(k, parent);
+                items.set(p, item);
+
+                // move up one level
+                k = p;
+            } else {
+                break;
+            }
+        }
+    }
+
+    public void insert(T item) {
+        items.add(item);
+        siftUp();
+    }
+
+
+    
+
+    public int size() {
+        return items.size();
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+
+    }
+
+    public String toString() {
+        return items.toString();
+    }
+
+
+}
